@@ -1,0 +1,11 @@
+# Ignore dependencies (too heavy)
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Ignore secrets (security)
+.env
+server/.env
+
+# Ignore system files
+.DS_Store

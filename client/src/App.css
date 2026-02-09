@@ -1,0 +1,288 @@
+/* IMPORT FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* LIGHT MODE VARIABLES */
+  --bg-color: #f0f4f8;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  --accent-color: #4f46e5;
+  --accent-hover: #4338ca;
+  --card-hover: rgba(255, 255, 255, 0.9);
+  --input-bg: rgba(255, 255, 255, 0.5);
+}
+
+body.dark {
+  /* DARK MODE VARIABLES */
+  --bg-color: #0f172a;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  --accent-color: #6366f1;
+  --accent-hover: #818cf8;
+  --card-hover: rgba(30, 41, 59, 0.9);
+  --input-bg: rgba(15, 23, 42, 0.6);
+}
+
+/* GLOBAL RESET */
+* { box-sizing: border-box; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
+body {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.15) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* LAYOUT */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* GLASS HEADER */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 15px 30px;
+  
+  /* GLASS EFFECT */
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+}
+
+.brand { display: flex; align-items: center; gap: 12px; color: var(--accent-color); }
+.brand h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+
+.header-actions { display: flex; align-items: center; gap: 15px; }
+
+/* GLASS CARDS */
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: var(--glass-shadow);
+}
+
+.card h3 { margin-top: 0; font-weight: 600; display: flex; align-items: center; gap: 10px; color: var(--text-primary); }
+
+/* STATS GRID */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: transform 0.2s;
+  box-shadow: var(--glass-shadow);
+}
+.stat-card:hover { transform: translateY(-5px); }
+
+/* VISUAL SELECTOR GRID */
+.hostel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.hostel-option {
+  background: var(--input-bg);
+  border: 2px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.hostel-option:hover { border-color: var(--accent-color); color: var(--accent-color); background: var(--glass-bg); }
+.hostel-option.selected { border-color: var(--accent-color); background: var(--accent-color); color: white; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4); }
+
+/* FORMS */
+input, select, textarea {
+  width: 100%;
+  padding: 14px;
+  background: var(--input-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: inherit;
+  margin-bottom: 15px;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); }
+
+/* BUTTONS */
+button, .btn-primary, .btn-outline {
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.btn-primary { background: var(--accent-color); color: white; width: 100%; }
+.btn-primary:hover { background: var(--accent-hover); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+
+/* ELEGANT OUTLINE BUTTON */
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  text-decoration: none; /* Crucial for Links */
+}
+
+.btn-outline:hover {
+  background: var(--accent-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.btn-toggle { background: var(--input-bg); color: var(--text-primary); border: 1px solid var(--glass-border); padding: 8px 12px; }
+.btn-toggle:hover { background: var(--glass-border); }
+
+.btn-logout { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
+.btn-logout:hover { background: #ef4444; color: white; }
+
+/* TABLES */
+.table-container { 
+  overflow-x: auto; /* ENABLE HORIZONTAL SCROLL */
+  border-radius: 16px; 
+  border: 1px solid var(--glass-border); 
+}
+
+table { width: 100%; border-collapse: collapse; min-width: 600px; /* Force scroll on small screens */ }
+
+th { background: rgba(99, 102, 241, 0.1); color: var(--text-primary); padding: 16px; text-align: left; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+td { padding: 16px; border-bottom: 1px solid var(--glass-border); color: var(--text-secondary); }
+tr:last-child td { border-bottom: none; }
+
+/* Specific Column Widths */
+th.col-date { width: 15%; }
+th.col-hostel { width: 20%; }
+th.col-issue { width: 35%; }
+th.col-status { width: 15%; }
+th.col-action { width: 15%; }
+
+/* BADGES */
+.badge { padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.resolved { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+.in_progress { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+.pending { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+/* Action Buttons */
+.action-buttons { display: flex; gap: 8px; margin-top: 5px; }
+.btn-action { padding: 6px 12px; font-size: 12px; border-radius: 6px; }
+.btn-start { background: #e0e7ff; color: #4338ca; }
+.btn-done { background: #dcfce7; color: #15803d; }
+
+.technician-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+textarea.tech-note {
+  width: 100%;
+  resize: vertical;
+  min-height: 60px;
+  font-size: 13px;
+  padding: 8px;
+}
+
+/* ========================================= */
+/* 📱 MOBILE RESPONSIVENESS (The Magic Fix) */
+/* ========================================= */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  /* 1. Stack the Header vertically */
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  /* 2. Spread out the action buttons */
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping if screen is very tiny */
+    gap: 10px;
+  }
+
+  .brand h2 {
+    font-size: 20px;
+  }
+
+  /* 3. Stack Stats Cards */
+  .stats-grid {
+    grid-template-columns: 1fr; /* Single column */
+  }
+  
+  /* 4. Hostel Grid: 2 columns on mobile instead of squashed */
+  .hostel-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+  /* 5. Adjust Button Sizes for Touch */
+  button, .btn-primary, .btn-outline, .btn-logout {
+    padding: 10px 16px;
+    font-size: 13px;
+    width: auto; /* Let buttons size themselves */
+    flex: 1; /* Make them grow equally */
+  }
+  
+  /* 6. Fix Form Inputs */
+  .form-row {
+    grid-template-columns: 1fr; /* Stack form inputs */
+  }
+  
+  /* 7. Hide description text on very small tables if needed, 
+     but mostly we rely on the horizontal scroll we added above */
+  .desc-text {
+    font-size: 12px;
+  }
+}
