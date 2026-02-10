@@ -22,7 +22,8 @@ const StudentDashboard = () => {
     "SCHU (Men)", "Bethel (Men)"
   ];
 
-  useEffect(() => { fetchReports(); }, []);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => { fetchReports(); }, []);
 
   const fetchReports = async () => {
     try {
