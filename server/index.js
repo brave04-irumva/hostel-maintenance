@@ -1,26 +1,39 @@
 const express = require("express");
 const cors = require("cors");
-const http = require("http"); // Import HTTP
-const { Server } = require("socket.io"); // Import Socket.io
+const http = require("http");
+const { Server } = require("socket.io");
 require("dotenv").config();
 
 const db = require("./db");
 const authRoutes = require("./routes/authRoutes");
 const reportRoutes = require("./routes/reportRoutes");
-const userRoutes = require("./routes/userRoutes"); // Ensure you have this or remove if not
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
-const server = http.createServer(app); // Wrap Express
+const server = http.createServer(app);
 
-// Setup Socket.io
+// Update: Defined allowed origins for both local and production
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://hostel-maintenance-rho.vercel.app"
+];
+
+// Update: Setup Socket.io with production origins
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000", // Allow your frontend
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
   },
 });
 
-app.use(cors());
+// Update: Configure Express CORS with production origins
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
@@ -33,7 +46,7 @@ app.use((req, res, next) => {
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/reports", reportRoutes);
-app.use("/api/users", userRoutes); 
+app.use("/api/users", userRoutes);
 
 // Socket.io Connection Event
 io.on("connection", (socket) => {
@@ -43,7 +56,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000; // Render uses port 10000 by default
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
